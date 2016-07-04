@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Visit Gyumri</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <!-- JQuery -->
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+    <!-- Bootstrap 3 -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Google Maps API V3 -->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+
+    <!-- Activ'Map plugin -->
+    <link rel="stylesheet" href="jquery-activmap/css/jquery-activmap.css">
+    <script src="jquery-activmap/js/jquery-activmap.js"></script>
+    <script src="jquery-activmap/js/markercluster.min.js"></script>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+
+<style>
+    /* Let's get this party started */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        -webkit-border-radius:0px;
+        border-radius: 0px;
+        background: #EFA300;
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+    }
+    ::-webkit-scrollbar-thumb:window-inactive {
+        background: rgba(255,0,0,0.4);
+    }
+</style>
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script>
+//        GoogleMap.addPolyline(PolylineOptions);
+//        // Instantiates a new Polyline object and adds points to define a rectangle
+//        PolylineOptions_rectOptions = new PolylineOptions()
+//                .add(new LatLng(40.788182, 43.85946))
+//                .add(new LatLng(40.785227, 43.841713))  // North of the previous point, but at the same longitude
+//
+//
+//        // Get back the mutable Polyline
+//        Polyline_polyline = myMap.addPolyline(rectOptions);
+//        Polyline.setPoints();
+
+        $(function() {
+             //Activ'Map plugin init
+             $('#activmap-wrapper').activmap({
+                 places: [
+                     {
+                         title: 'Gorki Street Area',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-gorki-street/',
+                         tags: ['gorki'],
+                         lat: 40.787520,
+                         lng: 43.858581,
+                         img: 'stops/stop1/stop1railwaystation.jpg',
+                         icon: 'images/1.png'
+                     },
+                     {
+                         title: 'Central Sqaure Area',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-citysquare/',
+                         tags: ['downtown'],
+                         lat: 40.785227,
+                         lng: 43.841713,
+                         img: 'stops/stop2/stop2vardanantssquare.jpg',
+                         icon: 'images/2.png'
+                     },
+                     {
+                         title: 'Urban Life Area',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-urban-life/',
+                         tags: ['urban'],
+                         lat: 40.782203,
+                         lng: 43.845293,
+                         img: 'stops/stop3/stop3victorypark.jpg',
+                         icon: 'images/3.png'
+                     },
+                     {
+                         title: 'Alexandrapol Area',
+                         address: '',
+                         phone: '',
+                         url: 'https://visitgyumri.buildatourapp.com/gyumri-alexandrapol/',
+                         tags: ['alexandrapol'],
+                         lat: 40.781123,
+                         lng: 43.835626,
+                         img: 'stops/stop4/stop4shiraklibrary.jpg',
+                         icon: 'images/4.png'
+                     },
+                     {
+                         title: 'Park and Tech Area',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/park-and-tech/',
+                         tags: ['tech'],
+                         lat: 40.786346,
+                         lng: 43.838108,
+                         img: 'stops/stop5/stop5techcenter.jpg',
+                         icon: 'images/5.png'
+                     },
+                     {
+                         title: 'Brewery Area',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-brewery/',
+                         tags: ['brewery'],
+                         lat: 40.789426,
+                         lng: 43.838172,
+                         img: 'stops/stop6/stop6gyumribrewery.jpg',
+                         icon: 'images/6.png'
+                     },
+                     {
+                         title: 'Museums Area',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/museum-area/',
+                         tags: ['museums'],
+                         lat: 40.787669,
+                         lng: 43.843086,
+                         img: 'stops/stop7/stop7shirazmuseum.jpg',
+                         icon: 'images/7.png'
+                     },
+                     {
+                         title: 'Theatre Area',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-theatre/',
+                         tags: ['theatre','arch'],
+                         lat: 40.790705,
+                         lng: 43.845033,
+                         img: 'stops/stop8/stop8dramatheatre.jpg',
+                         icon: 'images/8.png'
+                     },
+                     {
+                         title: 'Railway Station',
+                         address: 'Gorki Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/railway-station/',
+                         tags: ['arch','first_area_stops','soviet_arch'],
+                         lat: 40.787326,
+                         lng: 43.859353,
+                         img: 'stops/stop1/stop1railwaystation.jpg',
+                         icon: 'images/icons/trainStation.png'
+                     },
+                     {
+                         title: 'French School',
+                         address: '77 Gorki Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/french-school/',
+                         tags: ['statue','first_area_stops'],
+                         lat: 40.786960,
+                         lng: 43.852727,
+                         img: 'stops/stop1/stop1frenchschool.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Golden Apricot',
+                         address: 'Gorki 84/1',
+                         phone: '(+374 0312) 6 37 77',
+                         url:'https://visitgyumri.buildatourapp.com/golden-apricot-hotel/',
+                         tags: ['hotel','modern_arch'],
+                         lat: 40.786508,
+                         lng: 43.853873,
+                         img: 'images/hotels/hotelvosketsiran.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+                     {
+                         title: 'Gyumri Hotel',
+                         address: 'Garegin Njdeh Ave. 5/10',
+                         phone: '(+374 0312) 3-94-44',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-hotel/',
+                         tags: ['hotel','modern_arch'],
+                         lat: 40.801683,
+                         lng: 43.847948,
+                         img: 'images/hotels/hotelgyumri.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+                     {
+                         title: 'Vanatur Hotel',
+                         address: 'Gorki 70A Str.',
+                         phone: '(+374 312) 5 01 92',
+                         url:'https://visitgyumri.buildatourapp.com/vanatur-hotel/',
+                         tags: ['hotel','modern_arch'],
+                         lat: 40.786747,
+                         lng: 43.850502,
+                         img: 'images/hotels/hotelvanatur.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+                     {
+                         title: 'Vanatur Restaurant',
+                         address: 'Gorki Street',
+                         phone: '0312 5 07 14',
+                         url: 'https://visitgyumri.buildatourapp.com/vanatur-restaurant/',
+                         tags: ['cafe','modern_arch'],
+                         lat: 40.7866055,
+                         lng: 43.8504404,
+                         img: 'images/food/foodvanatur.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+                     {
+                         title: '“Antique” Shop',
+                         address: 'Gorki str. 76',
+                         phone: '(+374 98) 45 42 10, (+374 91) 45 42 10',
+                         url:'https://visitgyumri.buildatourapp.com/antique-shop/',
+                         tags: ['shop','first_area_stops'],
+                         lat: 40.786494,
+                         lng: 43.852163,
+                         img: 'stops/stop1/stop1antiqueshop.jpg',
+                         icon: 'images/icons/shops.png'
+                     },
+                     {
+                         title: 'Ashot Third the Merciful',
+                         address: 'Gorki Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/ashot-third-the-merciful-statue/',
+                         tags: ['statue','first_area_stops'],
+                         lat: 40.787352,
+                         lng: 43.846714,
+                         img: 'stops/stop1/stop1ashotstatue.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'The Bagratunyats park',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/the-bagratunyats-park/',
+                         tags: ['park','first_area_stops'],
+                         lat: 40.787490,
+                         lng: 43.845781,
+                         img: 'stops/stop1/stop1bagratunyatspark.jpg',
+                         icon: 'images/icons/park-icon.png'
+                     },
+                     {
+                         title: 'Family of Duduk Players',
+                         address: 'Peace Circle',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/family-of-duduk-players-statue/',
+                         tags: ['first_area_stops'],
+                         lat: 40.787455,
+                         lng: 43.844812,
+                         img: 'stops/stop1/stop1dudukplayers.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Ryzhkov Street',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/ryzhkov-street/',
+                         tags: ['first_area_stops'],
+                         lat: 40.787279,
+                         lng: 43.844638,
+                         img: 'stops/stop1/stop1ryzhkovstreet.jpg',
+                         icon: 'images/icons/street-icon.png'
+                     },
+                     {
+                         title: 'Style Gallery',
+                         address: 'Gayi Street, Gyumri, Armenia',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/style-gallery/',
+                         tags: ['museum'],
+                         lat: 40.785943,
+                         lng: 43.839843,
+                         img: 'stops/stop2/stop2stylegallery.jpg',
+                         icon: 'images/icons/gallery-icon.png'
+                     },
+                     {
+                         title: 'Souvenir Shop',
+                         address: 'Ryzhkov Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/souvenir-shop/',
+                         tags: ['shop'],
+                         lat: 40.786928,
+                         lng: 43.844114,
+                         img: 'stops/stop1/stop1souvenirshop.jpg',
+                         icon: 'images/icons/shops.png'
+                     },
+                     {
+                         title: 'Yaghli House',
+                         address: '6/5 Ryzhkov Str.',
+                         phone: '+374 77 090834',
+						 url: 'https://visitgyumri.buildatourapp.com/yaghli-house/',
+                         tags: ['cafe'],
+                         lat: 40.786576,
+                         lng: 43.843857,
+                         img: 'images/food/foodyaghlyouse.jpg',
+                         icon: 'images/icons/caferest.png'
+                     },
+					  {
+                         title: 'Cruise',
+                         address: '2 Victory Avenue',
+                         phone: '+374 95 501133',
+                         url:'https://visitgyumri.buildatourapp.com/cruise/',
+                         tags: ['cafe'],
+                         lat: 40.787150,
+                         lng: 43.845170,
+                         img: 'images/food/foodcruise.jpg',
+                         icon: 'images/icons/caferest.png'
+                     },
+                     {
+                         title: 'Gyumri Hatsatun',
+                         address: 'Gorky Street',
+                         phone: '+374 312 5-08-08',
+                         url:'https://visitgyumri.buildatourapp.com/hatsatun/',
+                         tags: ['cafe'],
+                         lat: 40.786899,
+                         lng: 43.846527,
+                         img: 'images/food/foodhatsatun.jpg',
+                         icon: 'images/icons/caferest.png'
+                     },
+                     {
+                         title: 'Vardanants Sqaure',
+                         address: 'Central Sqaure Area',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/vardanants-square/',
+                         tags: ['second_area_stops'],
+                         lat: 40.785349,
+                         lng: 43.841805,
+                         img: 'stops/stop2/stop2vardanantssquare.jpg',
+                         icon: 'images/icons/street-icon.png'
+                     },
+                     {
+                         title: 'Vardananq',
+                         address: 'Central Square',
+                         phone: '',
+                         url:'',
+                         tags: ['statue'],
+                         lat: 40.784936,
+                         lng: 43.841277,
+                         img: 'stops/stop2/stop2vardanantssquare.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'St Astvatsatsin or Yot Verq (Seven Wounds) Church',
+                         address: '1 Central Square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/st-astvatsatsin-or-yot-verq-seven-wounds-church/',
+                         tags: ['church','second_area_stops'],
+                         lat: 40.785997,
+                         lng: 43.842155,
+                         img: 'stops/stop2/stop2astvatsatsin.jpg',
+                         icon: 'images/icons/churches.png'
+                     },
+                     {
+                         title: 'Shirak Diocese',
+                         address: 'Central Square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/shirak-diocese/',
+                         tags: ['arch','soviet_arch','first_area_stops'],
+                         lat: 40.785957,
+                         lng: 43.842691,
+                         img: 'stops/stop1/stop1shirakdiocese.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'October Cinema',
+                         address: '143 Abovyan, Gyumri',
+                         phone: ' (+374-312) 5 08 33',
+                         url:'https://visitgyumri.buildatourapp.com/october-cinema/',
+                         tags: ['arch','second_area_stops','soviet_arch'],
+                         lat: 40.7858869,
+                         lng: 43.8413564,
+                         img: 'stops/stop2/stop2octobercinema.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Aslamazyan Sisters Gallery',
+                         address: 'Abovyan Str., 232',
+                         phone: '(+374-312) 4 82 05',
+						 url:'https://visitgyumri.buildatourapp.com/aslamazyan-sisters-gallery/',
+                         tags: ['museum','sixth_area_stops'],
+                         lat: 40.786326,
+                         lng: 43.840846,
+                         img: 'stops/stop6/stop6aslamazyangallery.jpg',
+                         icon: 'images/icons/gallery-icon.png'
+                     },
+					       {
+                         title: 'Old France Hotel',
+                         address: 'Abovyan Street',
+                         phone: '',
+						 url:'https://visitgyumri.buildatourapp.com/old-france-hotel/',
+                         tags: ['hotel','sixth_area_stops'],
+                         lat: 40.787078,
+                         lng: 43.840992,
+                         img: 'stops/stop6/stop6oldfrancehotel.jpg',
+                         icon: 'images/icons/hotel.png'
+                     },
+                     {
+                         title: 'Holy Saviour’s Church ',
+                         address: '145 Abovyan, Gyumri',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/holy-saviors-church/',
+                         tags: ['church','second_area_stops'],
+                         lat: 40.784048,
+                         lng: 43.841082,
+                         img: 'stops/stop2/stop2holysaviours.jpg',
+                         icon: 'images/icons/churches.png'
+                     },
+                     {
+                         title: 'Gyumri City Hall',
+                         address: '1, Vardanants Square',
+                         phone: '(+374 312) 3 26 06',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-city-hall/',
+                         tags: ['arch','second_area_stops','modern_arch','gyumri_today'],
+                         lat: 40.784986,
+                         lng: 43.842616,
+                         img: 'stops/stop2/stop2gyumricityhall.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Old Hotel Kumayri',
+                         address: 'Abovyan Street',
+                         phone: '',
+						 url: 'https://visitgyumri.buildatourapp.com/old-hotel-kumayri/',
+                         tags: ['arch','soviet_arch','second_area_stops'],
+                         lat: 40.785309,
+                         lng: 43.840753,
+                         img: 'stops/stop2/stop2oldhotelkumayri.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Ponchik-Monchik Cafe',
+                         address: 'Abovyan Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/ponchik-monchik-cafe/',
+                         tags: ['cafe'],
+                         lat: 40.785153,
+                         lng: 43.840811,
+                         img: 'images/food/foodponchikmonchik.jpg',
+                         icon: 'images/icons/caferest.png'
+                     },
+                     {
+                         title: 'TV Station Building',
+                         address: '248 Abovyan Street',
+                         phone: '(+374-312) 5 05 43',
+						 url: 'https://visitgyumri.buildatourapp.com/tv-station-building/',
+                         tags: ['arch','second_area_stops','soviet_arch'],
+                         lat: 40.784688,
+                         lng: 43.840758,
+                         img: 'stops/stop2/stop2tvstation.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Heghnar Aghbyur Monument',
+                         address: 'Abovyan Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/heghnar-aghbyur-monument/',
+                         tags: ['statue','second_area_stops'],
+                         lat: 40.784479,
+                         lng: 43.840428,
+                         img: 'stops/stop2/stop2heghnaraghbyur.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Alley of Khachkars',
+                         address: 'Abovyan Street',
+                         phone: '',
+						 url: 'https://visitgyumri.buildatourapp.com/holy-saviors-alley/',
+                         tags: ['statue','second_area_stops'],
+                         lat: 40.783399,
+                         lng: 43.841490,
+                         img: 'stops/stop2/stop2holysavioursalley.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Memorial to the Victims of Earthquake',
+                         address: 'Holy Saviours’ Alley',
+                         phone: '',
+						 url: 'https://visitgyumri.buildatourapp.com/memorial-to-the-victims-of-earthquake/',
+                         tags: ['statue','second_area_stops'],
+                         lat: 40.783792,
+                         lng: 43.841161,
+                         img: 'stops/stop2/stop2earthquakememorial.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+					 {
+                         title: 'Poloz Mukuch Statue',
+                         address: 'Holy Saviours’ Alley',
+                         phone: '',
+						 url: 'https://visitgyumri.buildatourapp.com/poloz-mukuch-statue/',
+                         tags: ['statue','second_area_stops'],
+                         lat: 40.783055,
+                         lng: 43.841361,
+                         img: 'stops/stop2/stop2polozmukuch.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Piano Restaurant',
+                         address: 'Abovyan Street',
+                         phone: '093 901 666',
+						 url: 'https://visitgyumri.buildatourapp.com/piano-restaurant/',
+                         tags: ['cafe'],
+                         lat: 40.7834834,
+                         lng: 43.8403273,
+                         img: 'images/food/foodpiano.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+                     {
+                         title: 'Leninakan 60th Anniversary Monument',
+                         address: 'Sculptor: Hakob Jivanyan.',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/leninakan-60th-anniversary-monument/',
+                         tags: ['statue','second_area_stops','soviet_arch'],
+                         lat: 40.782549,
+                         lng: 43.841035,
+                         img: 'stops/stop2/stop2leninakananniversarymonument.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Chadrents Aghbyur',
+                         address: 'Holy Saviours’ Alley',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/chadrents-aghbyur/',
+                         tags: ['statue','second_area_stops'],
+                         lat: 40.782517,
+                         lng: 43.841391,
+                         img: 'stops/stop2/stop2chadrentzaghbyur.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Alexandrapol',
+                         address: 'Mayakosvsky Street 70',
+                         phone: '(+374 0312) 5 00 51',
+                         url:'https://visitgyumri.buildatourapp.com/alexandrapol-hotel/',
+                         tags: ['hotel','modern_arch'],
+                         lat: 40.78218,
+                         lng: 43.841441,
+                         img: 'images/hotels/hotelalexandrapol.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+					  {
+                         title: 'Alexandrapol Restaurant',
+                         address: 'Mayakovski street',
+                         phone: '0312 5 00 51',
+                         url:'https://visitgyumri.buildatourapp.com/alexandrapol-restaurant/',
+                         tags: ['cafe'],
+                         lat: 40.78218,
+                         lng: 43.841441,
+                         img: 'images/food/foodalexandrapol.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+                     {
+                         title: 'Gold market',
+                         address: 'Aragats Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-gold-market/',
+                         tags: ['shop','third_area_stops','modern_arch'],
+                         lat: 40.783529,
+                         lng: 43.843810,
+                         img: 'images/shopping/shoppinggoldmarket.jpg',
+                         icon: 'images/icons/shops.png'
+                     },
+                     {
+                         title: 'Gyumri Open Market',
+                         address: 'Haghtanak Ave.',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-open-market/',
+                         tags: ['shop','third_area_stops'],
+                         lat: 40.7825074,
+                         lng: 43.8444159,
+                         img: 'stops/stop3/stop3openmarket.jpg',
+                         icon: 'images/icons/shops.png'
+                     },
+                     {
+                         title: 'Victory Park',
+                         address: 'Victory Park',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/victory-park/',
+                         tags: ['park','third_area_stops'],
+                         lat: 40.7832452,
+                         lng: 43.8450073,
+                         img: 'stops/stop3/stop3victorypark.jpg',
+                         icon: 'images/icons/park-icon.png'
+                     },
+                     {
+                         title: 'Berlin Art Hotel',
+                         address: 'Haghtanaki Avenue 25',
+                         phone: '(+374 0312) 5 76 59',
+                         url:'https://visitgyumri.buildatourapp.com/berlin-art-hotel/',
+                         tags: ['hotel'],
+                         lat: 40.7832808,
+                         lng: 43.8457546,
+                         img: 'images/hotels/hotelberlinart.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+                     {
+                         title: 'Andranik Zoravar and fedayi',
+                         address: 'Haghtanaki Avenue',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/andranik-zoravar-and-fedayi-statues/',
+                         tags: ['statue','third_area_stops'],
+                         lat: 40.781245,
+                         lng: 43.844642,
+                         img: 'stops/stop3/stop3andranikzoravar.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Museum of Urban Life and National Architecture',
+                         address: '47 Haghtanaki Avenue, Gyumri 3116,Armenia',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/dzitoghtsyan-museum-of-urban-life-and-national-architecture/',
+                         tags: ['museum','third_area_stops','alexandrapol_arch','seventh_area_stops'],
+                         lat: 40.781681,
+                         lng: 43.845553,
+                         img: 'stops/stop3/stop3urbanlifemuseum.jpg',
+                         icon: 'images/icons/museumgallery.png'
+                     },
+                     {
+                         title: 'Sergey Merkurov House Museum',
+                         address: '47 Haghtanaki Avenue, Gyumri 3116,Armenia',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/sergey-merkurovs-house-museum-atarbekyan-88/',
+                         tags: ['museum','third_area_stops','seventh_area_stops'],
+                         lat: 40.7816367,
+                         lng: 43.8450341,
+                         img: 'stops/stop3/stop3merkurovmuseum.jpg',
+                         icon: 'images/icons/museumgallery.png'
+                     },
+					 {
+						title:'Cathedral of Holy Martyrs',
+						address: 'Victory Avenue',
+						phone:'',
+						url:'https://visitgyumri.buildatourapp.com/cathedral-of-the-holy-martyrs/',
+						tags: ['gyumri_today','church'],
+						lat: 40.781661, 
+						lng: 43.845464,
+						img:'stops/stop3/stop3holymartyrs.jpg',
+						icon:'images/icons/churches.png'
+					 },
+					 {
+						title:'Zigzag',
+						address: 'Shahumyan St, Gyumri, Armenia',
+						phone:'',
+						url:'',
+						tags:['gyumri_today'],
+						lat: 40.786024, 
+						lng: 43.841924,
+						img: 'images/gyumri/gyumrizigzag.jpg',
+						icon:'images/icons/arch.png'
+					 },
+                     {
+                         title: 'Residential House',
+                         address: 'Teryan- Abovyan 163',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/teryan-street-abovyan-163-teryan-residential-house/',
+                         tags: ['arch','third_area_stops','alexandrapol_arch'],
+                         lat: 40.781209,
+                         lng: 43.840706,
+                         img: 'stops/stop3/stop3teryanstreet.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: '1st Secondary School',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/1st-secondary-school/',
+                         tags: ['arch','forth_area_stops'],
+                         lat: 40.781216,
+                         lng: 43.837154,
+                         img: 'stops/stop4/stop4firstsecondaryschool.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Russian Church',
+                         address: 'Alexandrapol Area',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/russian-church/',
+                         tags: ['church','forth_area_stops'],
+                         lat: 40.7810857,
+                         lng: 43.835991,
+                         img: 'stops/stop4/stop4russianchurch.jpg',
+                         icon: 'images/icons/churches.png'
+                     },
+                     {
+                         title: 'Old Hospital',
+                         address: '9 Hanesoghlyan',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/old-hospital-building/',
+                         tags: ['arch','forth_area_stops','alexandrapol_arch'],
+                         lat:  40.782675,
+                         lng: 43.836642,
+                         img: 'stops/stop4/stop4oldhospital.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Aghababyan Brothers House',
+                         address: '22, Hanesoghlyan Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/aghababyan-brothers-house/',
+                         tags: ['arch','forth_area_stops','alexandrapol_arch'],
+                         lat:  40.781529,
+                         lng: 43.836394,
+                         img: 'stops/stop4/stop4aghababyanhouse.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Yuzbashov Residential House',
+                         address: '15,Achemyan Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/yuzbashov-residential-house/',
+                         tags: ['arch','forth_area_stops','alexandrapol_arch'],
+                         lat:  40.783766,
+                         lng: 43.837193,
+                         img: 'stops/stop4/stop4yuzbashovhouse.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Shirak Regional Library',
+                         address: 'Vardan Achemyan St., 25',
+                         phone: '(+374-312) 4 59 69',
+                         url:'https://visitgyumri.buildatourapp.com/shirak-regional-library/',
+                         tags: ['institution','forth_area_stops','alexandrapol_arch'],
+                         lat:  40.785342,
+                         lng: 43.836732,
+                         img: 'stops/stop4/stop4shiraklibrary.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Old Post Office',
+                         address: 'Schors street 2',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/old-post-office/',
+                         tags: ['arch','forth_area_stops','alexandrapol_arch'],
+                         lat:  40.785517,
+                         lng: 43.836655,
+                         img: 'stops/stop4/stop4oldpostoffice.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Central Park',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/central-park-after-maxim-gorki/',
+                         tags: ['park','fifth_area_stops'],
+                         lat: 40.7847617,
+                         lng: 43.8357523,
+                         img: 'stops/stop5/stop5centralpark.jpg',
+                         icon: 'images/icons/park-icon.png'
+                     },
+                     {
+                         title: 'Old Theatre',
+                         address: 'Central Park After Maxim Gorki',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/old-theatre/',
+                         tags: ['arch','fifth_area_stops','alexandrapol_arch'],
+                         lat:  40.785869,
+                         lng: 43.836949,
+                         img: 'stops/stop5/stop5oldtheatre.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Oasis',
+                         address: 'Gyumri Central Park',
+                         phone: '0312 2 15 32',
+						 url:'https://visitgyumri.buildatourapp.com/oasis-restaurant/',
+                         tags: ['cafe'],
+                         lat: 40.7844826,
+                         lng: 43.8364489,
+                         img: 'images/food/foodoasis.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+                     {
+                         title: 'Black Fortress',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/the-black-fortress/',
+                         tags: ['arch','fifth_area_stops','alexandrapol_arch'],
+                         lat:  40.7821004,
+                         lng: 43.8274917,
+                         img: 'stops/stop5/stop5blackfortress.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Mother Armenia Monument',
+                         address: '',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/mother-armenia-monument/',
+                         tags: ['statue','fifth_area_stops'],
+                         lat: 40.7805048,
+                         lng: 43.8225854,
+                         img: 'stops/stop5/stop5motherarmenia.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Gyumri Technology Center',
+                         address: '1 Gayi Street Gyumri, Armenia',
+                         phone: '(+374 55) 13 55 58',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-technology-center/',
+                         tags: ['institution','fifth_area_stops','gyumri_today'],
+                         lat: 40.786407,
+                         lng: 43.838346,
+                         img: 'stops/stop5/stop5techcenter.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+					 {
+                         title: 'Café Nancy',
+                         address: '2 Gayi Street',
+                         phone: '+374 41 262629',
+                         url:'https://visitgyumri.buildatourapp.com/cafe-nancy/',
+                         tags: ['cafe'],
+                         lat: 40.786,
+                         lng: 43.839019,
+                         img: 'images/food/foodcafenancy.jpg',
+                         icon: 'images/icons/caferest.png'
+                     },
+                     {
+                         title: 'Old Painting School',
+                         address: '89 Jivani Street Gyumri, Armenia',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/old-painting-school/',
+                         tags: ['arch','fifth_area_stops','alexandrapol_arch'],
+                         lat: 40.786158,
+                         lng: 43.837693,
+                         img: 'stops/stop5/stop5oldpaintingschool.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Poloz Mukuch restaurant',
+                         address: 'Jivani Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/poloz-mukuch-restaurant/',
+                         tags: ['cafe','sixth_area_stops'],
+                         lat: 40.7899027,
+                         lng: 43.840747,
+                         img: 'stops/stop6/stop6polozmukuchrestaurant.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+                     {
+                         title: 'Gyumri Brewery',
+                         address: 'Jivanu St., 66 Building',
+                         phone: '(+374-312) 5 81 58',
+                         url:'https://visitgyumri.buildatourapp.com/brewery/',
+                         tags: ['arch','sixth_area_stops','alexandrapol_arch'],
+                         lat: 40.788458,
+                         lng: 43.838148,
+                         img: 'stops/stop6/stop6gyumribrewery.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Music School after Ashugh Sheram',
+                         address: 'Rustavelu St., 3 Building',
+                         phone: '(+374-312) 5 27 65',
+                         url:'https://visitgyumri.buildatourapp.com/music-school-after-ashugh-sheram/',
+                         tags: ['institution','sixth_area_stops','alexandrapol_arch'],
+                         lat: 40.789447,
+                         lng: 43.838770,
+                         img: 'stops/stop6/stop6sherammusicschool.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Villa Kars',
+                         address: 'Rustaveli Street',
+                         phone: '(+374 93) 54 82 25',
+                         url:'https://visitgyumri.buildatourapp.com/villa-kars-hotel/',
+                         tags: ['hotel','sixth_area_stops'],
+                         lat: 40.7889909,
+                         lng: 43.8402803,
+                         img: 'images/hotels/hotelvillakars.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+                     {
+                         title: 'Geghamyans՛ Residential House',
+                         address: 'Abovyan St., 182 Building',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/villa-kars-hotel/',
+                         tags: ['sixth_area_stops'],
+                         lat: 40.789039,
+                         lng: 43.841178,
+                         img: 'stops/stop6/stop6geghamyanhouse.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+                     {
+                         title: 'Rustaveli Residential House',
+                         address: '24 Rustaveli',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/residential-house-rustaveli-24/',
+                         tags: ['arch','sixth_area_stops','alexandrapol_arch'],
+                         lat: 40.789196,
+                         lng: 43.839634,
+                         img: 'stops/stop6/stop6rustavelihouse.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'St Nshan church',
+                         address: 'Abovyan Str., 117',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/st-nshan-church/',
+                         tags: ['church','sixth_area_stops'],
+                         lat: 40.7887472,
+                         lng: 43.8415248,
+                         img: 'stops/stop6/stop6nshanchurch.jpg',
+                         icon: 'images/icons/churches.png'
+                     },
+					 {
+                         title: 'St. Gregory the Illuminator’s church',
+                         address: 'Jivany Street 62a',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/st-gregory-the-illuminators-church/',
+                         tags: ['church','sixth_area_stops'],
+                         lat: 40.789388,
+                         lng: 43.838278,
+                         img: 'stops/stop6/stop6gregorychurch.jpg',
+                         icon: 'images/icons/churches.png'
+                     },
+                     {
+                         title: 'Araks hotel',
+                         address: 'Gorku St., 25 Building',
+                         phone: '(+374-312) 5 11 99',
+                         url:'https://visitgyumri.buildatourapp.com/araks-hotel/',
+                         tags: ['hotel','sixth_area_stops','alexandrapol_arch'],
+                         lat: 40.7884588,
+                         lng: 43.8414658,
+                         img: 'stops/stop6/stop6arakshotel.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+                     {
+                         title: 'Public Bathhouse of Gevorg Agha',
+                         address: 'Gorki Str., 28',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/public-bathhouse-of-gevorg-agha-gorku-28/',
+                         tags: ['arch','sixth_area_stops','alexandrapol_arch'],
+                         lat: 40.787474,
+                         lng: 43.840473,
+                         img: 'stops/stop6/stop6publicbathhouse.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'National Aesthetic Center Gyumri Branch',
+                         address: 'Abovyan Str., 216',
+                         phone: '(0312) 5 43 48',
+                         url:'https://visitgyumri.buildatourapp.com/national-aesthetic-center-gyumri-branch-geghagitakan/',
+                         tags: ['sixth_area_stops','alexandrapol_arch'],
+                         lat: 40.787852,
+                         lng: 43.841380,
+                         img: 'stops/stop6/stop6aestheticcenter.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Bread Bakery',
+                         address: 'Gorku St., 25 Building',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/bread-bakery/',
+                         tags: ['shop','sixth_area_stops'],
+                         lat: 40.7878171,
+                         lng: 43.8407685,
+                         img: 'stops/stop6/stop6breadbakery.jpg',
+                         icon: 'images/icons/shop.png'
+                     },
+                     {
+                         title: 'Gift City',
+                         address: 'Peace Circle 4',
+                         phone: '(0312) 5 01 02',
+                         url:'',
+                         tags: ['shop'],
+                         lat: 40.7881189,
+                         lng: 43.8427547,
+                         img: 'images/shopping/shoppinggiftcity.jpg',
+                         icon: 'images/icons/shop.png'
+                     },
+					  {
+                         title: 'Mushurba Statue',
+                         address: 'Gorki Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/mushurba-statue/',
+                         tags: ['statue','sixth_area_stops'],
+                         lat: 40.787622,
+                         lng: 43.841464,
+                         img: 'stops/stop6/stop6mushurba.jpg',
+                         icon: 'images/icons/statue.png'
+
+                     },
+                     {
+                         title: 'Mher Mkrtchyan House Museum',
+                         address: 'Rustavelu St., 30 Building',
+                         phone:'(0312) 5 51 74',
+                         url:'https://visitgyumri.buildatourapp.com/mher-mkrtchyan-house-museum/',
+                         tags: ['museum','seventh_area_stops','alexandrapol_arch'],
+                         lat: 40.788799,
+                         lng: 43.842528,
+                         img: 'stops/stop7/stop7mkrtchyanmuseum.jpg',
+                         icon: 'images/icons/museum-icon.png'
+                     },
+                     {
+                         title: 'Avetiq Isahakyan House Museum',
+                         address: 'Varpetats St., 91 Building',
+                         phone:'(+374-312) 5 72 91',
+                         url:'https://visitgyumri.buildatourapp.com/avetiq-isahakyan-house-museum/',
+                         tags: ['museum','seventh_area_stops','alexandrapol_arch'],
+                         lat: 40.7879176,
+                         lng: 43.8432204,
+                         img: 'stops/stop7/stop7isahakyanmuseum.jpg',
+                         icon: 'images/icons/museum-icon.png'
+                     },
+                     {
+                         title: 'Hovhannes Shiraz House Museum',
+                         address: 'Varpetats St., 101 Building',
+                         phone:'(+374-312) 5 51 42',
+                         url:'https://visitgyumri.buildatourapp.com/hovhannes-shiraz-house-museum/',
+                         tags: ['museum','seventh_area_stops','alexandrapol_arch'],
+                         lat: 40.7876374,
+                         lng: 43.8431298,
+                         img: 'stops/stop7/stop7shirazmuseum.jpg',
+                         icon: 'images/icons/museum-icon.png'
+                     },
+                     {
+                         title: 'Gorki Street Residental House',
+                         address: 'Gorki str., 30',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/residental-house-gorku-30/',
+                         tags: ['arch','seventh_area_stops','alexandrapol_arch'],
+                         lat: 40.787293,
+                         lng: 43.842616,
+                         img: 'stops/stop7/stop7gorkistreethouse.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Ceramics Production School',
+                         address: 'Shahumyan Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/ceramics-production-school/',
+                         tags: ['shop','arch','seventh_area_stops','alexandrapol_arch'],
+                         lat: 40.788751,
+                         lng: 43.842748,
+                         img: 'stops/stop7/stop7ceramicsschool.jpg',
+                         icon: 'images/icons/shop.png'
+                     },	
+					 {
+                         title: 'Gyumri Folk Corner',
+                         address: '101 Varpetats',
+                         phone: '(+374 93) 56 68 18',
+                         url:'',
+                         tags: ['shop'],
+                         lat: 40.787666,
+                         lng: 43.843,
+                         img: 'images/crafts/craftsgyumrifolkcorner.jpg',
+                         icon: 'images/icons/shop.png'
+                     },
+
+					 {
+                         title: 'Peace circle',
+                         address: '',
+                         phone: '',
+                         url:'',
+                         tags: ['park','eight_area_stops'],
+                         lat: 40.7878005,
+                         lng: 43.8458102,
+                         img: 'stops/stop1/stop1bagratunyatspark.jpg',
+                         icon: 'images/icons/park.png'
+                     },
+                     {
+                         title: 'Sayat Nova Statue',
+                         address: 'Sayat Nova Str.',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/sayat-nova-statue/',
+                         tags: ['statue','eight_area_stops'],
+                         lat: 40.788292,
+                         lng: 43.845885,
+                         img: 'stops/stop8/stop8sayatnova.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+					 {
+                         title: 'LeCafé',
+                         address: '1/5 Garegin Njdeh Avenue',
+                         phone: '0312 3 03 25',
+                         url:'https://visitgyumri.buildatourapp.com/lecafe/',
+                         tags: ['cafe'],
+                         lat: 40.802818,
+                         lng: 43.848459,
+                         img: 'images/food/foodlecafe.jpg',
+                         icon: 'images/icons/cafe-icon.png'
+                     },
+					 {
+                         title: 'Pizza Di Napoli',
+                         address: '1/5 Garegin Nzhdeh Ave.',
+                         phone: '0312 3 99 93',
+                         url:'https://visitgyumri.buildatourapp.com/pizza-di-napoli/',
+                         tags: ['cafe'],
+                         lat: 40.802688,
+                         lng: 43.848724,
+                         img: 'images/food/fooddinapoli.jpg',
+                         icon: 'images/icons/cafe-icon.png'
+                     },
+					 {
+                         title: 'Shara Restaurant',
+                         address: '1/5 Garegin Nzhdeh Ave.',
+                         phone: '0312 3 55 63',
+                         url:'https://visitgyumri.buildatourapp.com/shara-restaurant/',
+                         tags: ['cafe'],
+                         lat: 40.80268,
+                         lng: 43.848415,
+                         img: 'images/food/foodshara.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+					 {
+                         title: 'Cascata',
+                         address: '77/4 Proshyan, Gyumri',
+                         phone: '(+374 96) 70 03 07',
+                         url:'https://visitgyumri.buildatourapp.com/cascata/',
+                         tags: ['cafe'],
+                         lat: 40.796329,
+                         lng: 43.846795,
+                         img: 'images/food/foodcascata.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+					 {
+                         title: 'Cherkezi Dzor (Fish Farm)',
+                         address: 'Bulvarayin Str.',
+                         phone: '(0312) 6 55 59',
+                         url:'https://visitgyumri.buildatourapp.com/cherkezi-dzor/',
+                         tags: ['cafe'],
+                         lat: 40.797575,
+                         lng: 43.827907,
+                         img: 'images/food/foodcherkezidzor.jpg',
+                         icon: 'images/icons/restaurant-icon.png'
+                     },
+                     {
+                         title: 'Armen Tigranyan Park',
+                         address: 'Sayat-Nova Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/armen-tigranyan-park/',
+                         tags: ['park','eight_area_stops'],
+                         lat: 40.789446,
+                         lng: 43.845749,
+                         img: 'stops/stop8/stop8tigranyanpark.jpg',
+                         icon: 'images/icons/park-icon.png'
+                     },
+                     {
+                         title: 'Armen Tigranyan Statue',
+                         address: 'Sayat Nova Street',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/armen-tigranyan-statue/',
+                         tags: ['statue','eight_area_stops'],
+                         lat: 40.789171,
+                         lng: 43.845574,
+                         img: 'stops/stop8/stop8tigranyanstatue.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+					 {
+                         title: 'Gyumri Drama Theatre',
+                         address: '4, Sayat-Nova,Theatrical square',
+                         phone: '(+374 94) 44 32 99',
+                         url:'https://visitgyumri.buildatourapp.com/gyumri-drama-theatre/',
+                         tags: ['arch','eight_area_stops','soviet_arch'],
+                         lat: 40.790396, 
+                         lng: 43.844855,
+                         img: 'stops/stop8/stop8dramatheatre.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+                     {
+                         title: 'Theatrical Square',
+                         address: 'Theatrical square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/theater-square/',
+                         tags: ['eight_area_stops'],
+                         lat: 40.790910,
+                         lng: 43.845680,
+                         img: 'stops/stop6/stop8theatresquare.jpg',
+                         icon: 'images/icons/street-icon.png'
+                     },
+					 {
+                         title: 'Avetiq Isahakyan ',
+                         address: 'Theatrical Square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/av-isahakyan-statue/',
+                         tags: ['statue','eight_area_stops'],
+                         lat: 40.790290,
+                         lng:  43.845617,
+                         img: 'stops/stop8/stop8isahakyanstatue.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+					 {
+                         title: 'Mher Mkrtchyan',
+                         address: 'Theatrical Square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/mher-mkrtchyan-statue/',
+                         tags: ['statue','eight_area_stops'],
+                         lat: 40.790445, 
+                         lng: 43.845435,
+                         img: 'stops/stop8/stop8mhermkrtchyanstatue.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+					 {
+                         title: 'Hovhannes Shiraz ',
+                         address: 'Theatrical Square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/hovhannes-shiraz-statue/',
+                         tags: ['statue','eight_area_stops'],
+                         lat: 40.790875, 
+                         lng: 43.845671 ,
+                         img: 'stops/stop8/stop8shirazstatue.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Tashir Pizza',
+                         address: 'Sayat Nova street',
+                         phone: '+374 312 55005',
+                         url:'https://visitgyumri.buildatourapp.com/tashir-pizza/',
+                         tags: ['cafe'],
+                         lat: 40.792237,
+                         lng: 43.846071,
+                         img: 'images/food/foodtashir.jpg',
+                         icon: 'images/icons/cafe-icon.png'
+                     },
+					 {
+                         title: 'Academy of Fine Arts',
+                         address: 'Independence Square',
+                         phone: '(0312) 5 65 56',
+                         url:'https://visitgyumri.buildatourapp.com/academy-of-fine-arts/',
+                         tags: ['eight_area_stops','soviet_arch'],
+                         lat: 40.792651,
+                         lng: 43.846072,
+                         img: 'stops/stop8/stop8fineartsacademy.jpg',
+                         icon: 'images/icons/arch.png'
+                     },
+					 {
+                         title: 'Armenian Woman',
+                         address: 'Independence Square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/armenian-woman-statue/',
+                         tags: ['statue','eight_area_stops'],
+                         lat: 40.7923392,
+                         lng: 43.8472747,
+                         img: 'stops/stop8/stop8womanstatue.jpg',
+                         icon: 'images/icons/statue.png'
+                     },
+                     {
+                         title: 'Nane',
+                         address: 'Garegin Njdeh Ave. 1/5',
+                         phone: '+374 312 33369',
+                         url:'https://visitgyumri.buildatourapp.com/nane-hotel/',
+                         tags: ['hotel','modern_arch'],
+                         lat: 40.802717,
+                         lng: 43.848396,
+                         img: 'images/food/foodnane.jpg',
+                         icon: 'images/icons/hotels.png'
+                     },
+					 {
+                         title: 'Tigran Mets Street',
+                         address: 'Independence Square',
+                         phone: '',
+                         url:'https://visitgyumri.buildatourapp.com/tigran-mets-street/',
+                         tags: ['eight_area_stops'],
+                         lat: 40.791988, 
+                         lng: 43.847752 ,
+                         img: 'stops/stop8/stop8tigranmetsstreet.jpg',
+                         icon: 'images/icons/street-icon.png'
+                     },
+					 {
+						title:'Marmashen Monastry',
+						address: 'Marmashen Shirak Armenia',
+						phone:'',
+						url:'https://visitgyumri.buildatourapp.com/marmashen-monastry/',
+						tags:['kumayri_arch','church'],
+						lat: 40.8428562,
+						lng: 43.7536096,
+						img:'images/kumayriera/kumayrieramarmashen.jpg',
+						icon: 'images/icons/churches.png'
+					 },
+					 {
+						title:'Varduhi’s B&B',
+						address: 'Levon Madoyan str. 142, Gyumri, Armenia',
+						phone: '(+374)  93 450 557',
+						url:'https://visitgyumri.com/varduhis-bb/',
+						tags:['hotel'],
+						lat: 40.784156,
+						lng: 43.850103,
+						img: 'images/hotels/hotelvarduhi.jpg',
+						icon: 'images/icons/bb-icon.png'
+						
+					 },
+					  {
+						title:'My Home B&B',
+						address: 'Sundukyan 172 Str., 3104 Gyumri, Armenia',
+						phone: '(+374) 98 482 848, (+374)  93 113 376',
+						url:'http://anashatm.wix.com/myhome',
+						tags:['hotel'],
+						lat: 40.784267,
+						lng: 43.847223,
+						img: 'images/hotels/hotelmyhome.jpg',
+						icon: 'images/icons/bb-icon.png'
+						
+					 },
+					  {
+						title:'Armine’s B&B',
+						address: '26 Komisarneri 133, 3118 Gyumri, Armenia',
+						phone: '(+374) 91 408 336',
+						url:'',
+						tags:['hotel'],
+						lat: 40.789806,
+						lng: 43.837157,
+						img: 'images/hotels/hotelarmine.jpg',
+						icon: 'images/icons/bb-icon.png'
+						
+					 },
+					  {
+						title:'Artush & Raisa B&B',
+						address: 'str. Ayvazovski 1 / 2, 3115 Gyumri, Armenia',
+						phone: '(+374) 94 133 089',
+						url:'http://gyumribnb.com/',
+						tags:['hotel'],
+						lat: 40.807883,
+						lng: 43.845059,
+						img: 'images/hotels/hotelartushraisa.jpg',
+						icon: 'images/icons/bb-icon.png'
+						
+					 }
+                 ],
+                 icon: 'images/marker.png',
+                 posPanel: 'left',
+                 showPanel: true,
+                 radius: 20,
+				 zoom: 15,
+                 country: 'am',
+                 mapType: 'roadmap'
+
+             });
+         });
+    </script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="75" background="images/bg.jpg" style="background-size:cover;">
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-md-2">
+            <!--<h1><img src="[[gConfig["baseUrl"]]]app/assets/themes/alpine/img/Logo.png" alt="Activ'Map plugin"></h1>-->
+
+            <!--<a id="activmap-reset" class="btn btn-default" href="#"><i class="fa fa-ban"></i> Reset</a>-->
+
+            <!-- Activ'Map categories and tags -->
+            <div class="panel-group" id="activmap-accordion-areas" style="display: none;">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse-places-areas">
+                                <i class="fa fa-street-view"></i>AREAS
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-places-areas" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <label><input type="checkbox" name="marker_type[]" value="gorki" checked="checked"><span></span></label><br>
+                            <input type="checkbox" name="marker_type[]" value="downtown" checked="checked"> <br>
+                            <input type="checkbox" name="marker_type[]" value="urban" checked="checked"> <br>
+                            <input type="checkbox" name="marker_type[]" value="alexandrapol" checked="checked"> <br>
+                            <input type="checkbox" name="marker_type[]" value="tech" checked="checked"> <br>
+                            <input type="checkbox" name="marker_type[]" value="brewery" checked="checked"> <br>
+                            <input type="checkbox" name="marker_type[]" value="museums" checked="checked"> <br>
+                            <input type="checkbox" name="marker_type[]" value="theatre" checked="checked"> <br>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-group" id="activmap-accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-places">
+                                <i class="fa fa-street-view"></i>AREAS
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-places" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <label><input type="checkbox" name="marker_type[]" value="first_area_stops"> <span>Gorki Street Area</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="second_area_stops"> <span>Central Square Area</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="third_area_stops"> <span>Urban Life Area</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="forth_area_stops"> <span>Alexandrapol Area</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="fifth_area_stops"> <span>Park and Tech Area</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="sixth_area_stops"> <span>Brewery Area</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="seventh_area_stops"> <span>Museum Area</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="eight_area_stops"> <span>Theatre Area</span></label><br>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="panel-group" id="activmap-accordion">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" href="#collapse-tourism">
+                                <i class="fa fa-street-view"></i>CATEGORIES
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse-tourism" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <label><input type="checkbox" name="marker_type[]" value="museum" ><span>Museums</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="church" ><span>Churches</span></label><br>
+                            <label><input type="checkbox" name="marker_type[]" value="cafe" ><span>Cafes & Restaurants<span></label><br>
+							<label><input type="checkbox" name="marker_type[]" value="shop" ><span>Shops</span></label><br>
+							<label><input type="checkbox" name="marker_type[]" value="hotel" ><span>Hotels & B&B</span></label><br>
+                            <!--<input type="checkbox" name="marker_type[]" value="arch" >Architecture<br>-->
+							
+							
+							<div class="panel-heading">
+								<h4 class="panel-title" style="font-size:12px; font-weight:light;">
+									<a class="collapsed" data-toggle="collapse" href="#collapse-arch">
+										<i class="fa fa-street-view"></i>Architecture
+									</a>
+								</h4>
+							</div>
+							<div id="collapse-arch" class="panel-collapse collapse">
+								<div class="panel-body">
+								  <label><input type="checkbox" name="marker_type[]" value="alexandrapol_arch"><span>Alexandrapol Era</span></label><br>
+									<label><input type="checkbox" name="marker_type[]" value="soviet_arch"><span>Leninakan Era</span></label><br>
+									<label><input type="checkbox" name="marker_type[]" value="kumayri_arch"><span>Kumayri</span></label><br>
+									<!--<label><input type="checkbox" name="marker_type[]" value="modern_arch"><span>Modern Architecture</span></label>-->
+									<label><input type="checkbox" name="marker_type[]" value="gyumri_today"><span>Gyumri Today</span></label>
+								</div>
+							</div>
+                          
+							
+                       
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+           <!--categories -->
+            
+        </div>
+        <div class="col-md-10">
+            <div id="activmap-wrapper">
+                <!-- Places panel (auto removable) -->
+                <div id="activmap-places" class="hidden-xs">
+                    <div id="activmap-results-num"></div>
+                </div>
+                <!-- Map wrapper -->
+                <div id="activmap-canvas"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
